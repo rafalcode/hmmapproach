@@ -1,7 +1,5 @@
-/* durbx.c: code for the Durbin textbook example:
- * Beware alot of stuff is hard coded here, the point is to emulate
- * the example in simple C. The is a variation in this particular module
- * where I multiply transition matrices several times over */
+/* trmachk.c: simple code checking markov transition matrices.
+ * The example used is from Durbin and Eddy's book */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
