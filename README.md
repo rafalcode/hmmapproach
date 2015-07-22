@@ -2,9 +2,10 @@
 Exploring HMM algorithms through simple C code implementations.
 
 # Introduction
-HMMs are Hidden Markov Models. We observe a system that outputs symbols. We record the symbols as a sequence but have in mind a set of  system states that provoke these symbols, and want to associate the observed symbols to these states. Deciding upon a markov model fo rhte states means we can associate a Transition matrix for these states, and an Emission matrix for the symbols each state is likely to produce. However, these matrices need to be populated with values, and this usually happens by feeding the model with training data.
+HMMs are Hidden Markov Models. We observe a system that outputs symbols. We record the symbols as a sequence but have in mind a set of  system states that provoke these symbols, and want to associate the observed symbols to these states. Deciding upon a markov model fo rhte states means we can associate a Transition matrix for these states, and an Emission matrix for the symbols each state is likely to produce. However, these matrices need to be populated with values, and this usually happens by feeding the model with training data: example observations.
 
-We can 
+In truth HMMs consist of three sub-problems:
+1. Given transition and emission matrices, how likely is a certain observed symbol sequence? Note how this subproblem does not concern itself with the states, and because the transition and emission matrices are assumed to be known, it sounds like quite an uniteresting problem. It is however, useful in understanding HMMs and is a necessary steo to understanding the next two subproblems.
 
 # Overview:
 we consider a system with a set of states through which is goes through, often over a period of time, or which can be represented as such. Belying this behaviour is its innate transition matrix. In fact that's our first move with regard to elucidating the system: we imagine that there's a markov transition matrix for these states. WHile recovering this matrix is not our end goal, it a really helpful tool in our efforts.
