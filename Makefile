@@ -1,10 +1,15 @@
 CC=gcc
 DBGCFLAGS=-g -Wall
 CFLAGS=-O2
-EXES=durbx
+EXES=durbx sim0
+LIBS=-lm
 
 durbx: durbx.c
 	${CC} ${DBGCFLAGS} -o $@ $^
+
+# simple state change simulator
+sim0: sim0.c
+	${CC} ${DBGCFLAGS} -o $@ $^ ${LIBS}
 
 .PHONY: clean
 
