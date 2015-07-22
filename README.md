@@ -32,6 +32,8 @@ A HMM - if referred to as such, as an entity, so to speak - is often this groupi
 
 However, this model of ours is not the main goal. Clearly, the main goal is really to discover the states that correspond to those symbols. I should say the states that correspond BEST to those symbols, because in fact we cannot know them for sure (this particular aspect may be surprising. The hidden states are not revealed or exposed in an explicit manner unless, that is, they were known beforehand. We only work out the most probably path through the states, given the data we are supplied with, i.e. the detected symbols.
 
-# Start: CpG island detection
-We start by looking at a famous example, the detection of CpG islands in DNA sequences. HMMs are particularly intensively used in bioinformatics
-especially in gene and feature prediction, so they are pretty much a prerequisite subject to study. Durbin et al have a nice example in their textbook, and here is some simple C code implementing it.
+# First example: unfair casino.
+A well known example, based on a two state model represented by a fair dice and an unfair one. The unfair casino changes randomly from one to the other. We use HMM to find out which is being rolled.
+
+# Second example: CpG island detection
+This is a famous example, the detection of CpG islands in DNA sequences. HMMs are particularly intensively used in bioinformatics especially in gene and feature prediction, so they are pretty much a prerequisite subject to study. Durbin et al have a nice example in their textbook, and here is some simple C code implementing it.
