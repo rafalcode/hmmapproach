@@ -33,7 +33,7 @@ int chanceit(int n, int *iarr)
     printf("rndnum was %f\n", ura); 
 #endif
 
-    for(i=0;i<n;++i) {
+    for(i=0;i<n-1;++i) {
         if(ura>arr[i])
             continue;
         else
@@ -47,6 +47,8 @@ int main(int argc, char *argv[])
 {
     if(argc!=4) {
         printf("Error. Pls supply 3 arguments 1) Length unknown seq 2) length training data 3) avg numb of state change per training length.\n");
+        printf("Example usage: %s 200 20 2: average of two state changes is training data of length 20;\n", argv[0]);
+        printf("This same ate used for unknown data of length 200\n");
         printf("Four files will be output: \"unkhmm.symb\", unkhmm.states\", \"trnhmm.symb\" and finally \"trnhmm.states\"");
         exit(EXIT_FAILURE);
     }
@@ -58,7 +60,6 @@ int main(int argc, char *argv[])
         printf("divisible by the training sequence length\n"); 
         exit(EXIT_FAILURE);
     }
-    int times=tsqlen/sqlen;
 
 #ifdef UNPREDRA
     struct timeval tnow;
@@ -78,14 +79,14 @@ int main(int argc, char *argv[])
     float twt=.0;
     /* hard-coded data now follows: */
     char cc[2]={'A', 'B'};
-    int die[2][DICENSIDES]={ {1,1,1,1,1,1}, {1,1,1,1,1,5} };
-    printf("throwndie=%i\n",chanceit(6,die[1]));
+    int die[2][DICENSIDES]={ {1,1,1,1,1,1}, {1,1,1,1,1,20} };
     /* end of hardcoded data */
     unsigned char c=0;
 
     /* first we're going to populate our training data files */
     FILE *ftsy/*fileptr train symbs*/=fopen("./trnhmm.symb", "w");
     FILE *ftsta/*fileptr train states*/=fopen("./trnhmm.states", "w");
+    int tstacha=0;
     while(1) { /* infinite loop to be broken out of */
         ura= 1. - (float)random()/(RAND_MAX+1L); /* because we don't want to have zero, ever, for the log function */
         wt= -log(ura)/lam;
@@ -95,15 +96,14 @@ int main(int argc, char *argv[])
 #endif
         while((i<=(int)twt) & (i<sqlen)) {
             fputc(cc[0x01&c], ftsy);
-            printf("%i ", chanceit(DICENSIDES, die[0x01&c]));
-            fputc(chanceit(DICENSIDES, die[0x01&c]), ftsta);
+            fputc(48+chanceit(DICENSIDES, die[0x01&c]), ftsta);
             i++;
         }
         if(twt >= sqlen)
             break;
         c++;
+        tstacha++;
     }
-    printf("\n"); 
     fputc('\n', ftsy);
     fputc('\n', ftsta);
     fclose(ftsy);
@@ -115,7 +115,8 @@ int main(int argc, char *argv[])
     c=0; /* yes, we start like we started the training sequence */
     i=0; /* yes, we start like we started the training sequence */
     twt=.0;
-    lam = times*evplen;
+    /* change lam? No! the rate will not change! */
+    int ustacha=0;
     while(1) { /* infinite loop to be broken out of */
         ura= 1. - (float)random()/(RAND_MAX+1L); /* because we don't want to have zero, ever, for the log function */
         wt= -log(ura)/lam;
@@ -125,16 +126,19 @@ int main(int argc, char *argv[])
 #endif
         while((i<=(int)twt) & (i<tsqlen)) {
             fputc(cc[0x01&c], fusy);
-            fputc(chanceit(DICENSIDES, die[0x01&c]), fusta);
+            fputc(48+chanceit(DICENSIDES, die[0x01&c]), fusta);
             i++;
         }
         if(twt >= tsqlen)
             break;
+        ustacha++;
         c++;
     }
     fputc('\n', fusy);
     fputc('\n', fusta);
     fclose(fusy);
     fclose(fusta);
+
+    printf("Program run report: %i states changes reg in training set; %i state changes in unknown set.\n", tstacha, ustacha); 
     return 0;
 }
