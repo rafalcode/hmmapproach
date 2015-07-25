@@ -49,7 +49,7 @@ int main(int argc, char *argv[])
         printf("Error. Pls supply 3 arguments 1) Length unknown seq 2) length training data 3) avg numb of state change per training length.\n");
         printf("Example usage: %s 200 20 2: average of two state changes is training data of length 20;\n", argv[0]);
         printf("This same ate used for unknown data of length 200\n");
-        printf("Four files will be output: \"unkhmm.symb\", unkhmm.states\", \"trnhmm.symb\" and finally \"trnhmm.states\"");
+        printf("Four files will be output: \"unkhmm.symb\", unkhmm.states\", \"trnhmm.symb\" and finally \"trnhmm.states\"\n");
         exit(EXIT_FAILURE);
     }
     int tsqlen=atoi(argv[1]);
