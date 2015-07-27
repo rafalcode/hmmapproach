@@ -1,5 +1,5 @@
-# hmmworld
-Exploring HMM algorithms through simple C code implementations.
+# hmmapproach
+An in-depth exploration of the chief HMM algorithms (Forward, Backward, Viterbi, Baum-Welch) through simple yet robust C code implementations.
 
 # Introduction
 HMMs are Hidden Markov Models. We observe a system that outputs symbols. We record the symbols as a sequence but have in mind a set of  system states that provoke these symbols, and want to associate the observed symbols to these states. Deciding upon a markov model fo rhte states means we can associate a Transition matrix for these states, and an Emission matrix for the symbols each state is likely to produce. However, these matrices need to be populated with values, and this usually happens by feeding the model with training data: example observations.
