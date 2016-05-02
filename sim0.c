@@ -1,3 +1,4 @@
+/* trying to sort out waiting time formula */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -33,7 +34,7 @@ int main(int argc, char *argv[])
         wt[3]= -1.0/ar2*log(1+ura); 
         wt[4]= -1.0/ar2*log(ura); 
         wt[5]= -log(ura)/ar2;
-        printf("wts=");
+        printf("For ura=%4.4f, wts=", ura);
         for(j=0;j<6;++j) 
             printf("%.3f ", wt[j]);
         printf("\n"); 
