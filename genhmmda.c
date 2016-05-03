@@ -1,3 +1,9 @@
+/* this is the dishonest casino die-changing experiment.
+ * We bet on a fairsided, but every now and then, the casino changes to 
+ * a weighted die. 
+ * This is very easy to change if you want CpG islands ... still two states and instead of 6 numbers, well 4 letteri
+ *
+ * Sorry htat's not quite tru ... you would have to work with dinucleotides. May be */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -47,8 +53,10 @@ int main(int argc, char *argv[])
 {
     if(argc!=4) {
         printf("Error. Pls supply 3 arguments 1) Length unknown seq 2) length training data 3) avg numb of state change per training length.\n");
-        printf("Example usage: %s 200 20 2: average of two state changes is training data of length 20;\n", argv[0]);
-        printf("This same ate used for unknown data of length 200\n");
+        printf("This program generates state and symbols sequences based on a six sided die for testing purposes.\n");
+        printf("A training sequence is also given as many hmm detectors require one.\n");
+        printf("Example usage: %s 200 20 2 will give you an average of two state changes in training data of length 20;\n", argv[0]);
+        printf("This same rate si the used for the true unknown sequence of length 200\n");
         printf("Four files will be output: \"unkhmm.symb\", unkhmm.states\", \"trnhmm.symb\" and finally \"trnhmm.states\"\n");
         exit(EXIT_FAILURE);
     }
