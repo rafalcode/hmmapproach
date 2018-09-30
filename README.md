@@ -2,14 +2,14 @@
 An in-depth exploration of the chief HMM algorithms (Forward, Backward, Viterbi, Baum-Welch) through simple yet robust C code implementations.
 
 # Introduction
-HMMs are Hidden Markov Models. We observe a system that outputs symbols. We record the symbols as a sequence but have in mind a set of  system states that provoke these symbols, and want to associate the observed symbols to these states. Deciding upon a markov model fo rhte states means we can associate a Transition matrix for these states, and an Emission matrix for the symbols each state is likely to produce. However, these matrices need to be populated with values, and this usually happens by feeding the model with training data: example observations.
+HMMs are Hidden Markov Models. We observe a system that outputs symbols. We record the symbols as a sequence but have in mind a set of system states that cause or provoke these symbols, and want to associate the observed symbols to these underlying states. Deciding upon a markov model for the states means we can associate a Transition matrix for these states, and an Emission matrix for the symbols each state is likely to produce. However, these matrices need to be populated with values, and this usually happens by feeding the model with training data, i.e. example observations.
 
 In truth HMMs consist of three sub-problems:
 1. So-called "Evaluation": Given transition and emission matrices, how likely is a certain observed symbol sequence? Note this subproblem does not concern itself with the states, and because the transition and emission matrices are assumed to be known, it sounds like quite an uniteresting problem. It is however, useful in understanding HMMs and is a necessary step to understanding the next two subproblems. The so-called forward algorithm is sufficient for this.
 
-2. So-called "Decoding": The second subproblem also assumes we have a transition and emission matrix, but this time it tries to discover the most likely sequence of states corresponding to the observed symbols, so it is more interesting than subproblem no. 1. The Viterbi algorithm is used for this, but there's no clever trick really, it just records the most probable state for at each stage fo the symbol sequence.
+2. So-called "Decoding": The second subproblem also assumes we have a transition and emission matrix, but this time it tries to discover the most likely sequence of states corresponding to the observed symbols, so it is more interesting than subproblem no. 1. The Viterbi algorithm is used for this, but there's no clever trick really, it just records the most probable state at each stage of the symbol sequence.
 
-3. So-called "Learning": The thrid and final subproblem is the most important, and concerns how we use known states and symbols as training to data to help populate the transition and emission matrices for later use in identifying states in future unknown symbols of sequences from the same system.
+3. So-called "Learning": The third and final subproblem is the most important, and concerns how we use known states and symbols as training to data to help populate the transition and emission matrices for later use in identifying states in future unknown symbols of sequences from the same system.
 
 # Overview:
 we consider a system with a set of states through which is goes through, often over a period of time, or which can be represented as such. Belying this behaviour is its innate transition matrix. In fact that's our first move with regard to elucidating the system: we imagine that there's a markov transition matrix for these states. WHile recovering this matrix is not our end goal, it a really helpful tool in our efforts.
@@ -37,3 +37,11 @@ A well known example, based on a two state model represented by a fair dice and 
 
 # Second example: CpG island detection
 This is a famous example, the detection of CpG islands in DNA sequences. HMMs are particularly intensively used in bioinformatics especially in gene and feature prediction, so they are pretty much a prerequisite subject to study. Durbin et al have a nice example in their textbook, and here is some simple C code implementing it.
+
+# Forumular
+
+## uninf rand or unirand +1
+
+
+Some confusiona s to whether we should add 1 to the uninfrand. Well 1 + ura is always positive to -log(uninfra) will always be negative,
+so the waiting time is negative. I don't knwo where that 1+ came come, unless it was confusion with leaving out 0 1-uninfra
